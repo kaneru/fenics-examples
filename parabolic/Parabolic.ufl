@@ -1,0 +1,11 @@
+cell = triangle
+element = FiniteElement("Lagrange", cell, 1)
+
+u = TrialFunction(element)
+u0 = Coefficient(element)
+v = TestFunction(element)
+f = Coefficient(element)
+dt = Constant(triangle)
+
+a = (u*v + dt*inner(grad(u), grad(v)))*dx
+L = (u0 + dt*f)*v*dx

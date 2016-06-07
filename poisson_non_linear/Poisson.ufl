@@ -1,0 +1,16 @@
+m = 2
+def q(u):
+    return (1+u)**m
+
+cell = triangle
+element = FiniteElement("Lagrange", cell, 1)
+
+f = Coefficient(element)
+u = Coefficient(element)
+v = TestFunction(element)
+
+F = inner(q(u)*grad(u), grad(v))*dx - f*v*dx
+
+du = TrialFunction(element)
+
+J = derivative(F, u, du)

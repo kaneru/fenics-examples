@@ -1,0 +1,11 @@
+cell = triangle
+element = FiniteElement("Lagrange", cell, 1)
+
+#functions
+u = TrialFunction(element)
+v = TestFunction(element)
+f = Coefficient(element)
+
+#Bilinerial and linerial form
+a = inner(grad(u), grad(v))*dx
+L = f*v*dx
